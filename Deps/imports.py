@@ -6,3 +6,4 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from datetime import datetime
 import mysql.connector
+from threading import Event

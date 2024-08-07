@@ -19,16 +19,30 @@ def get_station_data(driver):
             IDBike_Xpath = f"/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/app-station/ion-content/ion-list/ion-item[{currentbike}]/ion-label/h2/ion-text"
             BATBike_Xpath = f"/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/app-station/ion-content/ion-list/ion-item[{currentbike}]/ion-label/p/span[1]"
             KMBike_Xpath = f"/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/app-station/ion-content/ion-list/ion-item[{currentbike}]/ion-label/p/span[2]"
+            button_xpath = f"/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/app-station/ion-content/ion-list/ion-item[{currentbike}]/ion-button"
 
+            BikeIsBlock = None
             try:
                 IDBike = driver.find_element(By.XPATH, IDBike_Xpath).text
                 BATBike = driver.find_element(By.XPATH, BATBike_Xpath).text
                 KMBike = driver.find_element(By.XPATH, KMBike_Xpath).text
+                button_element = driver.find_element(By.XPATH, button_xpath)
+
+# Vérifier l'attribut aria-disabled
+                aria_disabled = button_element.get_attribute("aria-disabled")
+
+# Déterminer si le vélo est bloqué en fonction de la valeur de aria-disabled
+                if aria_disabled == "true":
+                    BikeIsBlock = True
+                else:
+                    BikeIsBlock = False
 
                 bikes_data[IDBike] = {
                     'BATBike': BATBike,
-                    'KMBike': KMBike
+                    'KMBike': KMBike,
+                    'Bloked' : BikeIsBlock
                 }
+                #print(BikeIsBlock)
             except Exception as e:
                 print(f"Erreur en récupérant les données du vélo {currentbike} à la Station {name}: {e}")
 
@@ -39,5 +53,5 @@ def get_station_data(driver):
         return name, value, velo, places, place, bikes_data
 
     except Exception as e:
-        print(f"Une erreur est survenue pour obtenir les données : {e}")
+        print(f"Une erreur est survenue pour obtenir les données pour {AllStationsID} : {e}")
         return "", 0, "", 0, "", {}

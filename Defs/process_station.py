@@ -4,10 +4,10 @@ def process_station(idstation):
     
     try:
         driver.get(urlstation)
-        time.sleep(5)  # Réduit le délai d'attente initial
+        time.sleep(2)  # Réduit le délai d'attente initial
 
         accept_cookies(driver)
-        time.sleep(5)  # Réduit le délai d'attente après avoir accepté les cookies
+        time.sleep(2)  # Réduit le délai d'attente après avoir accepté les cookies
 
         NomStation, value, velo, places, place, bikes_data = get_station_data(driver)
         #print(f"NomStation: {NomStation}, Value: {value}, Velo: {velo}, Places: {places}, Place: {place}, Bikes Data: {bikes_data}")
