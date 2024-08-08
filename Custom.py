@@ -49,11 +49,7 @@ with ThreadPoolExecutor(max_workers=4) as executor:
     for future in as_completed(future_to_station):
         result, AllStationsID = future.result()
 
-        if found == True:
-            break
-
-        if result:
-            NomStation, value, velo, places, place, bikes_data = result
+        # Mettez votre code ICI !
             
 
 print("\n" * 2)

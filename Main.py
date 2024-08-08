@@ -30,7 +30,7 @@ total = 0
 tatol = 0
 
 print("El Marcelo A Velo - BlocBlocTheBloc Code")
-print("Rapport complet des stations et vélos associées avec import dans la Base")
+print("Rapport complet des stations et vélos associées")
 print("\n")
 print("\n")
 
@@ -44,11 +44,11 @@ with ThreadPoolExecutor(max_workers=4) as executor:
             if NomStation:
                 with open('Defs/update.py', 'r') as file:
                     code = file.read()
-                    exec(code)
+                    #exec(code)
 
                 with open('Defs/tracking_station.py', 'r') as file:
                     code = file.read()
-                    exec(code)
+                    #exec(code)
 
                 if bikes_data != {}:
                     print(f"    {NomStation} possède {value} {velo} et {place} {places} libres dont :")
