@@ -5,7 +5,7 @@ from selenium.webdriver.firefox.options import Options
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from datetime import datetime
-import mysql.connector
+#import mysql.connector
 from threading import Event
 import os
 import platform
